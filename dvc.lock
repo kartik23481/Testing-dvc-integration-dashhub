@@ -1,0 +1,80 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python mlops_src/data_preprocess.py --input data/raw/flight_price.csv 
+      --out_dir data/processed
+    deps:
+    - path: data/raw/flight_price.csv
+      hash: md5
+      md5: 9cb5bfbef61d5d6ce24d07a54b0ec5f7
+      size: 1096472
+    - path: mlops_src/data_preprocess.py
+      hash: md5
+      md5: eb44db3f217ec53ac025b089e458f24d
+      size: 6053
+    outs:
+    - path: data/processed/cleaned_flight_data.csv
+      hash: md5
+      md5: 15b4a51896e89c6b0921f2dd672e5bcf
+      size: 678127
+    - path: data/processed/test_data.csv
+      hash: md5
+      md5: de59c9078aaa5136e376d5385a5a2a8e
+      size: 135950
+    - path: data/processed/train_data.csv
+      hash: md5
+      md5: 0a824c95b706ee752abd2681c72e0f8d
+      size: 433806
+    - path: data/processed/val_data.csv
+      hash: md5
+      md5: 0490e98ad14aabbe487df7cca2ef1088
+      size: 108625
+  feature_pipeline:
+    cmd: python mlops_src/feature_pipeline.py --data 
+      data/processed/train_data.csv --artifacts backend_artifacts
+    deps:
+    - path: data/processed/train_data.csv
+      hash: md5
+      md5: 0a824c95b706ee752abd2681c72e0f8d
+      size: 433806
+    - path: mlops_src/feature_pipeline.py
+      hash: md5
+      md5: 04fbf9c81b3d795de90ab108df652688
+      size: 6517
+    - path: mlops_src/utils/feature_utils.py
+      hash: md5
+      md5: eb5740f130fc7d4d2d1c2924540f702b
+      size: 2950
+    - path: mlops_src/utils/rbf.py
+      hash: md5
+      md5: dbf1065e620257757c53e43b16092966
+      size: 699
+    outs:
+    - path: backend_artifacts/latest_column_transformer.joblib
+      hash: md5
+      md5: 23c5e420bd86ba85291d09fa335083d1
+      size: 12256
+  train:
+    cmd: python mlops_src/train.py
+    deps:
+    - path: backend_artifacts/latest_column_transformer.joblib
+      hash: md5
+      md5: 23c5e420bd86ba85291d09fa335083d1
+      size: 12256
+    - path: data/processed/train_data.csv
+      hash: md5
+      md5: 0a824c95b706ee752abd2681c72e0f8d
+      size: 433806
+    - path: data/processed/val_data.csv
+      hash: md5
+      md5: 0490e98ad14aabbe487df7cca2ef1088
+      size: 108625
+    - path: mlops_src/train.py
+      hash: md5
+      md5: 3eec263e24defe0fc4f9c74ff6aa6ad3
+      size: 3891
+    outs:
+    - path: backend_artifacts/xgb_flight_price_model.joblib
+      hash: md5
+      md5: 8986c69010b739f3914dabed2e0b692e
+      size: 1352325
