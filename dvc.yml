@@ -1,0 +1,31 @@
+stages:
+  preprocess:
+    cmd: python mlops_src/data_preprocess.py --input data/raw/flight_price.csv --out_dir data/processed
+    deps:
+      - data/raw/flight_price.csv
+      - mlops_src/data_preprocess.py
+    outs:
+      - data/processed/cleaned_flight_data.csv
+      - data/processed/train_data.csv
+      - data/processed/val_data.csv
+      - data/processed/test_data.csv
+
+  feature_pipeline:
+    cmd: python mlops_src/feature_pipeline.py --data data/processed/train_data.csv --artifacts backend_artifacts
+    deps:
+      - data/processed/train_data.csv
+      - mlops_src/feature_pipeline.py
+      - utils/feature_utils.py
+      - utils/rbf.py
+    outs:
+      - backend_artifacts/latest_column_transformer.joblib
+
+  train:
+    cmd: python mlops_src/train.py
+    deps:
+      - data/processed/train_data.csv
+      - data/processed/val_data.csv
+      - backend_artifacts/latest_column_transformer.joblib
+      - mlops_src/train.py
+    outs:
+      - backend_artifacts/xgb_flight_price_model.joblib
