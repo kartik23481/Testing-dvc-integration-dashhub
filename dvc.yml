@@ -15,8 +15,8 @@ stages:
     deps:
       - data/processed/train_data.csv
       - mlops_src/feature_pipeline.py
-      - utils/feature_utils.py
-      - utils/rbf.py
+      - mlops_src/utils/feature_utils.py
+      - mlops_src/utils/rbf.py
     outs:
       - backend_artifacts/latest_column_transformer.joblib
 
