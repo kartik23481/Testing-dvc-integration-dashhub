@@ -71,8 +71,8 @@ stages:
       size: 108625
     - path: mlops_src/train.py
       hash: md5
-      md5: 3eec263e24defe0fc4f9c74ff6aa6ad3
-      size: 3891
+      md5: 4367114e641646ae4fed8645abb2c15c
+      size: 3920
     outs:
     - path: backend_artifacts/xgb_flight_price_model.joblib
       hash: md5
