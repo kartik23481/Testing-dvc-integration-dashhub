@@ -43,7 +43,7 @@ jobs:
 
       # 5️⃣ Pull data + cached artifacts from DagsHub
       - name: Pull DVC data
-        run: dvc pull
+        run: dvc pull data/raw/flight_price.csv
 
       # 6️⃣ Run ML pipeline — skips unchanged stages automatically
       - name: Run ML pipeline
