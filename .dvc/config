@@ -1,0 +1,4 @@
+[core]
+    remote = dagshub
+['remote "dagshub"']
+    url = https://dagshub.com/kartiksri2005/Testing-dvc-integration-dashhub.dvc
