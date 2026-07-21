@@ -42,7 +42,7 @@ from logging import getLogger, basicConfig
 # Logging Setup
 from mlops_src.utils.logger import get_logger
 
-LOG_DIR = os.path.join(ROOT, "mlops_src", "logs")
+LOG_DIR = os.path.join(ROOT,"logs")
 logger = get_logger("feature_pipeline", os.path.join(LOG_DIR, "feature_pipeline.log"))
 logger.info("===== FEATURE PIPELINE STARTED =====")
 

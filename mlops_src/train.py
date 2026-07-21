@@ -12,17 +12,18 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error
 import joblib
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
 
 # LOGGING
 from mlops_src.utils.logger import get_logger
 
-LOG_DIR = os.path.join("mlops_src", "logs")
+LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
 logger = get_logger("train", os.path.join(LOG_DIR, "train.log"))
 logger.info("===== TRAINING STARTED =====")
 
 
 # PATHS
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 BACKEND_ARTIFACTS_DIR = os.path.join(PROJECT_ROOT, "backend_artifacts")

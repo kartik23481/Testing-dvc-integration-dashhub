@@ -22,7 +22,7 @@ EXPECTED = [
 # Logging
 from mlops_src.utils.logger import get_logger
 
-LOG_DIR = os.path.join(PROJECT_ROOT, "mlops_src", "logs")
+LOG_DIR = os.path.join(PROJECT_ROOT, "logs")
 logger = get_logger("update_artifacts", os.path.join(LOG_DIR, "update_artifacts.log"))
 
 
