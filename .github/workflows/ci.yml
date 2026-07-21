@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MLFLOW_TRACKING_URI: file:./mlruns
+      MLFLOW_TRACKING_URI: https://dagshub.com/kartiksri2005/Testing-dvc-integration-dashhub.mlflow
+      MLFLOW_TRACKING_USERNAME: kartiksri2005
+      MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
       PYTHONPATH: .
 
     steps:
