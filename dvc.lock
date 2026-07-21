@@ -10,8 +10,8 @@ stages:
       size: 1096472
     - path: mlops_src/data_preprocess.py
       hash: md5
-      md5: eb44db3f217ec53ac025b089e458f24d
-      size: 6053
+      md5: 86f693b470b8ef8f4e630ad470c44524
+      size: 6054
     outs:
     - path: data/processed/cleaned_flight_data.csv
       hash: md5
